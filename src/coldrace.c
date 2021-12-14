@@ -51,15 +51,17 @@ int main(void)
 		{
 			print((const char *)key);
 			print(": Not found.\n");
+			pflush();
 		}
 		else
 		{
-			print((const char *)key);
+			print((const char *)find);
 			print("\n");
+			pflush();
 		}
 		free(key);
 	}
-	pflush();
+//	pflush();
 
 	delete_map();
 	

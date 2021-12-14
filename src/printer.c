@@ -2,7 +2,7 @@
 
 #include <unistd.h> // write
 
-#define PBUF_SIZE 65535
+#define PBUF_SIZE 512
 
 static char	g_print_buf[PBUF_SIZE];
 static int	g_print_i = 0;
