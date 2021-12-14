@@ -6,6 +6,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
+#include "get_next_line.h"
 
 typedef	struct listItem_s
 {
@@ -27,9 +28,9 @@ typedef struct node_s
 }		node_t;
 
 int		hash_func(const char *str);
-void	set_value(node_t *node);
-char	*get_value(int tofind, char *key);
-void	delete_map();
+void	set_value(node_t **base, node_t *node);
+char	*get_value(node_t **base, int tofind, char *key);
+void	delete_map(node_t *base);
 
 int		ft_strcmp(const char *s1, const char *s2);
 void	pflush();

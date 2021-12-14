@@ -2,8 +2,6 @@
 #define LEFT 1
 #define RIGHT 0
 
-node_t *base;
-
 node_t	*move_it_or_create(node_t *it, int dir, node_t *create)
 {
 	if (dir == LEFT)
@@ -24,15 +22,15 @@ node_t	*move_it_or_create(node_t *it, int dir, node_t *create)
 	}
 }
 
-void	set_value(node_t *node)
+void	set_value(node_t **base, node_t *node)
 {
-	if (!base)
+	if (!(*base))
 	{
-		base = node;
+		*base = node;
 	}
 	else
 	{
-		node_t *it = base;
+		node_t *it = *base;
 		while (it->hash != node->hash)
 		{
 			if (it->hash > node->hash)
@@ -54,11 +52,11 @@ void	set_value(node_t *node)
 	}	
 }
 
-char	*get_value(int tofind, char *key)
+char	*get_value(node_t **base, int tofind, char *key)
 {
-	if (!base)
+	if (!(*base))
 		return (0);
-	node_t *it = base;
+	node_t *it = *base;
 	while (it && it->hash != tofind)
 	{
 		if (it->hash < tofind)
@@ -84,7 +82,7 @@ char	*get_value(int tofind, char *key)
 	return 0;
 }
 
-void	delete_map()
+void	delete_map(node_t *base)
 {
 	if (!base)
 		return;
