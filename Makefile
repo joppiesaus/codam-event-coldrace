@@ -1,7 +1,7 @@
 NAME=coldrace
 
 CC=gcc
-FLAGS=-Wall -Wextra -Werror -Wunused -pedantic -Ofast -march=native -mtune=native
+FLAGS=-Wall -Wextra -Werror -Wunreachable-code -Wunused-variable -pedantic -Ofast -march=native -mtune=native
 DEBUG_FLAGS=-g -fsanitize=address
 SRC=$(wildcard src/*.c)
 LIBS=-I inc/
