@@ -12,7 +12,7 @@ static void	m_free_and_set_null(void **p)
 static int	read_until_newline(const int fd, char **s)
 {
 	char	buf[BUFFER_SIZE + 1];
-	ssize_t	bytes_read;
+	ssize_t	bytes_read = -1;
 
 	while (ft_strchr(*s, '\n') == 0)
 	{

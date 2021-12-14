@@ -120,9 +120,5 @@ void	delete_map()
 			free(it);
 			it = tmp;
 		}
-		
-
 	}
-	
-	
 }

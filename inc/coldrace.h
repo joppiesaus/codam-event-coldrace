@@ -36,3 +36,4 @@ void	pflush();
 void	print(const char *str);
 
 #endif
+

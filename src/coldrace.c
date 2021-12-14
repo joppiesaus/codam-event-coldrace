@@ -32,8 +32,7 @@ int main(void)
 		toadd->right = 0;
 		toadd->back = 0;
 		set_value(toadd);
-	}
-	
+	}	
 	while (1)
 	{
 		key = get_next_line(0);
@@ -52,11 +51,9 @@ int main(void)
 		{
 			print((const char *)key);
 			print(": Not found.\n");
-	//		printf("%s: Not found.\n", key);
 		}
 		else
 		{
-	//		printf("%s\n", key);
 			print((const char *)key);
 			print("\n");
 		}
