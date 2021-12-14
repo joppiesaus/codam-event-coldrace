@@ -1,6 +1,7 @@
 #include "coldrace.h"
 #include "get_next_line.h"
 #include <fcntl.h>
+#include <stdio.h>
 
 int main(void)
 {
@@ -10,7 +11,7 @@ int main(void)
 
 	while (1)
 	{
-		// TODO: OPTIMIZE
+		// TODO: OPTIMIZE lol
 		key = get_next_line(0);
 		if (*key == '\n' || key == 0)
 		{
@@ -21,7 +22,6 @@ int main(void)
 		if (value == 0 || *value == '\n')
 			break ;
 		hash = hash_func(key);
-		// printf("%s$ %x\n", key, hash);
 		node_t *toadd = malloc(sizeof(node_t));
 		toadd->hash = hash;
 		toadd->data = malloc(sizeof(listItem_t));
@@ -49,19 +49,14 @@ int main(void)
 		char *find = get_value(hash, key);
 		if (!find)
 		{
-			print((const char *)key);
-			print(": Not found.\n");
-			pflush();
+			printf("%s: Not found.\n", key);
 		}
 		else
 		{
-			print((const char *)find);
-			print("\n");
-			pflush();
+			printf("%s\n", find);
 		}
 		free(key);
 	}
-//	pflush();
 
 	delete_map();
 	
