@@ -3,7 +3,7 @@ NAME=coldrace
 CC=gcc
 FLAGS=-Wall -Wextra -Ofast -march=native -mtune=native -lm
 DEBUG_FLAGS=-g -fsanitize=address
-SRC=src/*.c
+SRC=$(wildcard src/*.c)
 LIBS=-I inc/
 OBJ=
 RM =rm -rf

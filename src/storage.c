@@ -40,10 +40,21 @@ void	set_value(node_t *node)
 			else
 				it = move_it_or_create(it, RIGHT, node);
 		}
+		if (ft_strcmp(it->data->key, node->data->key) != 0)
+		{
+			listItem_t *nxt = it->data;
+			while (nxt->next)
+			{
+				nxt = nxt->next;
+			}
+			nxt->next = node->data;
+			free(node);
+		}
+		
 	}	
 }
 
-char	*get_value(int tofind)
+char	*get_value(int tofind, char *key)
 {
 	if (!base)
 		return (0);
@@ -56,7 +67,20 @@ char	*get_value(int tofind)
 			it = it->left;
 	}
 	if (it)
-		return it->value;
+	{
+		if (it->data->next)
+		{
+			listItem_t *li = it->data;
+			while (li)
+			{
+				if (ft_strcmp(key, li->key) == 0)
+					return li->value;
+				li = li->next;
+			}
+		}
+		else
+			return it->data->value;
+	}
 	return 0;
 }
 
@@ -83,8 +107,16 @@ void	delete_map()
 				else
 					tmp->left = 0;
 			}
-			free(it->key);
-			free(it->value);
+			listItem_t *iter = it->data;
+			while (iter)
+			{
+				listItem_t *itertmp = iter;
+				free(iter->key);
+				free(iter->value);
+				iter = iter->next;
+				free(itertmp);
+			}
+			
 			free(it);
 			it = tmp;
 		}

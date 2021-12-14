@@ -24,27 +24,46 @@ int main(void)
 		// printf("%s$ %x\n", key, hash);
 		node_t *toadd = malloc(sizeof(node_t));
 		toadd->hash = hash;
-		toadd->key = key;
-		toadd->value = value;
+		toadd->data = malloc(sizeof(listItem_t));
+		toadd->data->key = key;
+		toadd->data->value = value;
+		toadd->data->next = 0;
 		toadd->left = 0;
 		toadd->right = 0;
 		toadd->back = 0;
 		set_value(toadd);
 	}
+	
 	while (1)
 	{
 		key = get_next_line(0);
-		if (key == 0 || *key == '\n')
+		if (key == NULL)
+		{
 			break ;
+		}
+		else if (*key == '\n')
+		{
+			free(key);
+			break ;
+		}
 		hash = hash_func(key);
-		char *find = get_value(hash);
+		char *find = get_value(hash, key);
 		if (!find)
-			printf("%s: Not found.\n", key);	
+		{
+			print((const char *)key);
+			print(": Not found.\n");
+	//		printf("%s: Not found.\n", key);
+		}
 		else
-			printf("%s\n", find);
+		{
+	//		printf("%s\n", key);
+			print((const char *)key);
+			print("\n");
+		}
 		free(key);
 	}
-	
+	pflush();
+
 	delete_map();
 	
 	return 0;
