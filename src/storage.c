@@ -40,9 +40,10 @@ void	set_value(node_t *node)
 			else
 				it = move_it_or_create(it, RIGHT, node);
 		}
-		if (ft_strcmp(it->data->key, node->data->key) != 0)
+		if (node->data->key != it->data->key)
 		{
 			listItem_t *nxt = it->data;
+			printf("kanker kanker kanker\n");
 			while (nxt->next)
 			{
 				nxt = nxt->next;
