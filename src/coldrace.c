@@ -13,7 +13,7 @@ int main(void)
 	{
 		// TODO: OPTIMIZE lol
 		key = get_next_line(0);
-		if (*key == '\n' || key == 0)
+		if (key == 0 || *key == '\n')
 		{
 			free(key);
 			break ;
@@ -36,11 +36,7 @@ int main(void)
 	while (1)
 	{
 		key = get_next_line(0);
-		if (key == NULL)
-		{
-			break ;
-		}
-		else if (*key == '\n')
+		if (key == 0 || *key == '\n')
 		{
 			free(key);
 			break ;

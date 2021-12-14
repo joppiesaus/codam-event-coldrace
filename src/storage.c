@@ -43,7 +43,6 @@ void	set_value(node_t *node)
 		if (node->data->key != it->data->key)
 		{
 			listItem_t *nxt = it->data;
-			printf("kanker kanker kanker\n");
 			while (nxt->next)
 			{
 				nxt = nxt->next;
@@ -87,6 +86,8 @@ char	*get_value(int tofind, char *key)
 
 void	delete_map()
 {
+	if (!base)
+		return;
 	node_t *it = base;
 	while (it->left)
 	{
