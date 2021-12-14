@@ -3,7 +3,7 @@
 
 # include <stddef.h>
 
-# define BUFFER_SIZE (1024)
+# define BUFFER_SIZE (4096)
 
 char	*get_next_line(int fd);
 
