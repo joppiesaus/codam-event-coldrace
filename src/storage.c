@@ -10,6 +10,7 @@ node_t	*move_it_or_create(node_t *it, int dir, node_t *create)
 	{
 		if (it->left)
 			return it->left;
+		create->back = it;
 		it->left = create;
 		return it->left;
 	}
@@ -17,6 +18,7 @@ node_t	*move_it_or_create(node_t *it, int dir, node_t *create)
 	{
 		if (it->right)
 			return it->right;
+		create->back = it;
 		it->right = create;
 		return it->right;
 	}
@@ -56,4 +58,39 @@ char	*get_value(int tofind)
 	if (it)
 		return it->value;
 	return 0;
+}
+
+void	delete_map()
+{
+	node_t *it = base;
+	while (it->left)
+	{
+		it = it->left;
+	}
+	while (it)
+	{
+		if (it->right)
+			it = it->right;
+		else if (it->left)
+			it = it->left;
+		else if (!it->left && !it->right)
+		{
+			node_t *tmp = it->back;
+			if (tmp)
+			{
+				if (tmp->right == it)
+					tmp->right = 0;
+				else
+					tmp->left = 0;
+			}
+			free(it->key);
+			free(it->value);
+			free(it);
+			it = tmp;
+		}
+		
+
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 #include "coldrace.h"
 #include "get_next_line.h"
+#include <fcntl.h>
 
 int main(void)
 {
@@ -12,7 +13,10 @@ int main(void)
 		// TODO: OPTIMIZE
 		key = get_next_line(0);
 		if (*key == '\n' || key == 0)
+		{
+			free(key);
 			break ;
+		}
 		value = get_next_line(0);
 		if (value == 0 || *value == '\n')
 			break ;
@@ -24,8 +28,8 @@ int main(void)
 		toadd->value = value;
 		toadd->left = 0;
 		toadd->right = 0;
+		toadd->back = 0;
 		set_value(toadd);
-
 	}
 	while (1)
 	{
@@ -38,7 +42,10 @@ int main(void)
 			printf("%s: Not found.\n", key);	
 		else
 			printf("%s\n", find);
+		free(key);
 	}
+	
+	delete_map();
 	
 	return 0;
 }

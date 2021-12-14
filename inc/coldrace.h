@@ -6,12 +6,14 @@
 #include <math.h>
 #include <stdlib.h>
 
+
 typedef struct node_s
 {
 	int hash;
 	char *key;
 	char *value;
 
+	struct node_s *back;
 	struct node_s *left;
 	struct node_s *right;
 
@@ -20,5 +22,6 @@ typedef struct node_s
 int	hash_func(const char *str);
 void	set_value(node_t *node);
 char	*get_value(int tofind);
+void	delete_map();
 
 #endif
