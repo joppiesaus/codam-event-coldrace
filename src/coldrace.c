@@ -17,7 +17,7 @@ int main(void)
 		if (value == 0 || *value == '\n')
 			break ;
 		hash = hash_func(key);
-		printf("%s$ %x\n", key, hash);
+		// printf("%s$ %x\n", key, hash);
 		node_t *toadd = malloc(sizeof(node_t));
 		toadd->hash = hash;
 		toadd->key = key;
@@ -32,11 +32,12 @@ int main(void)
 		key = get_next_line(0);
 		if (key == 0 || *key == '\n')
 			break ;
-		printf("key: %s$\n", key);
 		hash = hash_func(key);
 		char *find = get_value(hash);
-
-		printf("Found: %s\n", find);
+		if (!find)
+			printf("%s: Not found.\n", key);	
+		else
+			printf("%s\n", find);
 	}
 	
 	return 0;

@@ -92,8 +92,8 @@ char	*ft_strndup_unsafe(const char *s1, const size_t len)
 	s2 = malloc(len + 1);
 	if (s2 != NULL)
 	{
-		printf("%d\n", len);
-		//ft_memcpy(s2, s1, len);
+		//printf("%d\n", len);
+		ft_memcpy(s2, s1, len);
 		s2[len] = 0;
 	}
 	return (s2);
