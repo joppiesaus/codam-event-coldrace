@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-node_t	*buckets[256];
+node_t	*buckets[65536];
 
 int main(void)
 {
@@ -13,7 +13,6 @@ int main(void)
 	int		hash;
 
 	struct timeval stop1, stop2, start;
-	gettimeofday(&start, NULL);
 
 	while (1)
 	{
@@ -37,9 +36,8 @@ int main(void)
 		toadd->left = 0;
 		toadd->right = 0;
 		toadd->back = 0;
-		set_value(&buckets[(hash & 0x000000FF)], toadd);
+		set_value(&buckets[(hash & 0x0000FFFF)], toadd);
 	}
-	gettimeofday(&stop1, NULL);
 	while (1)
 	{
 		key = get_next_line(0);
@@ -49,7 +47,7 @@ int main(void)
 			break ;
 		}
 		hash = hash_func(key);
-		char *find = get_value(&buckets[(hash & 0x000000FF)], hash, key);
+		char *find = get_value(&buckets[(hash & 0x0000FFFF)], hash, key);
 		if (!find)
 		{
 			printf("%s: Not found.\n", key);
@@ -60,12 +58,9 @@ int main(void)
 		}
 		free(key);
 	}
-
-	gettimeofday(&stop2, NULL);
-	for (size_t i = 0; i < 256; i++)
+	for (size_t i = 0; i < 65536; i++)
 	{
 		delete_map(buckets[i]);
 	}
-	printf("1:%lu, 2:%lu\n", (stop1.tv_sec - start.tv_sec) * 1000000 + stop1.tv_usec - start.tv_usec, (stop2.tv_sec - stop1.tv_sec) * 1000000 + stop2.tv_usec - stop1.tv_usec);
 	return 0;
 }
