@@ -1,8 +1,10 @@
 #include "coldrace.h"
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <sys/time.h>
+
+#include <stdio.h> // printf
+#include <stdlib.h> // malloc, free
+//#include <fcntl.h>
+//#include <sys/time.h>
 
 node_t	*buckets[65536];
 
