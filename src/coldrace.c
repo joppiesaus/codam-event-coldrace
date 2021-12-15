@@ -12,7 +12,7 @@ int main(void)
 	char	*value;
 	int		hash;
 
-	struct timeval stop1, stop2, start;
+//	struct timeval stop1, stop2, start;
 
 	while (1)
 	{
